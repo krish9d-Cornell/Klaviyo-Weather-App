@@ -1,0 +1,27 @@
+{
+  "user": {
+    "config_id": "development",
+    "app_name": "Klaviyo Weather App",
+    "": "my app desc",
+    "node_port": 3000,
+    "json_indentation": 4
+  },
+
+  "database": {
+    "user": "root",
+    "password": "dummy_password",
+    "db": "userInfo"
+  },
+
+  "email": {
+    "service": "gmail",
+    "port": 25,
+    "user": "dummy_email",
+    "password": "dummy_password",
+    "sender": "dummy_sender"
+  },
+
+  "weather": {
+    "key": "dummy_key"
+  }
+}
