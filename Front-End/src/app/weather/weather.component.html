@@ -1,0 +1,43 @@
+<div class="container">
+  <h2 style=" margin-left: auto; margin-right: auto;">Please enter your email and location.</h2>
+  <form (ngSubmit)="onSubmit()" #emailForm="ngForm">
+    <div class="form-group" >
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" required
+             [(ngModel)]="email" name="email" placeholder="username@xyz.com" #email_entry="ngModel" email>
+      <div [hidden]="email_entry.pristine || email != ''"
+           class="alert alert-danger" >
+        Enter is required
+      </div>
+
+    </div>
+
+
+    <div class="form-group">
+      <label for="location">Location</label>
+      <select class="form-control" id="location"  [(ngModel)]="location"  #location_entry="ngModel" name="location" required >
+        <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+      </select>
+      <div [hidden]="location_entry.valid || location_entry.pristine"
+           class="alert alert-danger" >
+        Location is required
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-success" (click)="onSubmit()"
+            [disabled]="!emailForm.form.valid">Submit</button>
+  </form>
+
+  <div id="publisherVerification" *ngIf="submitted">
+    <div *ngIf="errorMsg == ''; else showError ">
+      <h5>{{display_result}}</h5>
+    </div>
+    <ng-template #showError>
+      <div>
+        <h5>{{errorMsg}}</h5>
+      </div>
+    </ng-template>
+  </div>
+
+
+</div>
