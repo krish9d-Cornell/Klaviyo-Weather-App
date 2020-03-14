@@ -22,7 +22,6 @@ async function update_weather(){
         request(url,function(error,response,body){
             if(error){
                 // we can use the old cache value, so ignore error
-                console.log(error)
             }else{
                 weather_json = JSON.parse(body)
                 curr_temp[weather_json.city.name] = weather_json.list[0].main.temp
@@ -47,9 +46,17 @@ function get_weather_message(city){
     else
         msg_subject = "Enjoy a discount on us!"
 
-    msg_body = "Greetings from Klaviyo! It's "+ weather[city]+" outside in "
-               +city+ " and the temperature is "+ Math.round((curr_temp[city] -273))
-               + " degree celsius. Stay safe from the virus!"
+    // Make sure we do have weather data
+    if (city in weather){
+        msg_body = "Greetings from Klaviyo! It's "+ weather[city]+" outside in "
+                   +city+ " and the temperature is "+ Math.round((curr_temp[city] -273))
+                   + " degree celsius. Stay safe from the virus!"
+    }
+    // In case weather data is empty, use genric message (this should almost never be the case)
+    else{
+        msg_body = "Greetings from Klaviyo!"
+        msg_subject = "Enjoy a discount on us!"
+    }
 
     return {subject: msg_subject, body: msg_body }
 }

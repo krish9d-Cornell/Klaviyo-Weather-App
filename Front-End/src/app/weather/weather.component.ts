@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EmailService } from '../email.service';
+import { EmailService } from '../services/email.service';
 import { CommonModule } from '@angular/common';
 import {citylist} from '../../data/cities';
 
